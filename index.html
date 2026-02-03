@@ -2,10 +2,64 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Mon App Agricole Pro</title>
-    <link rel="stylesheet" href="style.css"> </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion Agricole Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
-    <div class="container"> ... </div>
 
-    <script src="script.js"></script> </body>
+<div class="container">
+    <h1>🚜 Gestion Agricole : Stocks & Coûts</h1>
+
+    <div class="grid">
+        <div class="card">
+            <h2>📦 Entrée Stock (Livraison)</h2>
+            <div class="form-group">
+                <input type="text" id="stkNom" placeholder="Nom de l'aliment (ex: Maïs)">
+                <input type="number" id="stkQuantite" placeholder="Quantité livrée (kg)">
+                <input type="number" id="stkPrix" placeholder="Prix total d'achat (€)">
+                <button onclick="ajouterStock()">Ajouter au Stock</button>
+            </div>
+            
+            <h3>Stocks actuels</h3>
+            <div id="listeStocks"></div>
+        </div>
+
+        <div class="card">
+            <h2>🐥 Suivi des Lots</h2>
+            <div class="form-group">
+                <input type="text" id="lotNom" placeholder="Nom du lot (ex: Poulets Bât. A)">
+                <input type="number" id="lotEffectif" placeholder="Nombre d'animaux">
+                <select id="lotAlimentSelect"></select>
+                <input type="number" id="lotConso" placeholder="Conso. par animal/jour (kg)" step="0.001">
+                <button onclick="creerLot()" class="btn-alt">Créer le Lot</button>
+            </div>
+            
+            <h3>Lots en cours</h3>
+            <div id="listeLots"></div>
+        </div>
+    </div>
+
+    <div class="card full-width">
+        <h2>📊 Analyse du Coût de Revient</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Lot</th>
+                        <th>Jours</th>
+                        <th>Conso Totale</th>
+                        <th>Coût Alimentaire</th>
+                        <th>Coût / Tête</th>
+                    </tr>
+                </thead>
+                <tbody id="tableauSynthese"></tbody>
+            </table>
+        </div>
+        <button onclick="reinitialiserTout()" class="btn-danger">Réinitialiser toutes les données</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
 </html>
